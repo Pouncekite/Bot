@@ -1,6 +1,8 @@
 ﻿using Discord;
 using Discord.Commands;
 
+using System;
+
 namespace NSNBot
 {
     public static class Commands
@@ -19,12 +21,21 @@ namespace NSNBot
                     User personToHelp = e.Message.User;
                     await personToHelp.SendMessage("You can PM any feedback about *anything* to this bot, "
                         + "and it will be rebroadcast anonymously to the officers.\n"
-                        +"!<command> to get stuff.\n"
-                        + "**!<class>**: Full name of the class, e.g. !deathknight\n"
-                        + "**!tanks** or **!healers**: the respective discord for those roles\n"
-                        + "**!weakauras** or **!amr**: the respective discord for those utlities\n"
+                        +"**DISCORDS:**\n"
+                        + "**!<class>** (full name e.g. !deathknight)\n"
+                        + "**!tanks**,**!healers**, **!weakauras**, **!amr**\n"
                         + "**!logs**: Link to our raid logs\n"
+                        + "**!armory <name> <opt:server>** for the relevant armory link. US-only right now. ex: !armory pouncekite sargeras\n"
                         + "**!source**: The source code for this bot");
+                });
+
+            comm.CreateCommand("armory")
+                .Parameter("charName", ParameterType.Required)
+                .Parameter("charServer", ParameterType.Optional)
+                .Do(async (e) =>
+                {
+                    string charServer = (e.GetArg("charServer").Equals("")) ? "area-52" : e.GetArg("charServer");
+                    await e.Channel.SendMessage("http://us.battle.net/wow/en/character/" + charServer + "/" + e.GetArg("charName") + "/advanced");
                 });
 
             comm.CreateCommand("deathknight")
