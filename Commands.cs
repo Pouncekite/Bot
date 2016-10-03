@@ -13,6 +13,18 @@ namespace NSNBot
             });
             var comm = d.GetService<CommandService>();
 
+            comm.CreateCommand("help")
+                .Do(async (e) =>
+                {
+                    User personToHelp = e.Message.User;
+                    await personToHelp.SendMessage("!<command> to get stuff.\n"
+                        + "!<class>: Full name of the class, e.g. !deathknight\n"
+                        + "!tanks or !healers: the respective discord for those roles\n"
+                        + "!weakauras or !amr: the respective discord for those utlities\n"
+                        + "!logs: Link to our raid logs\n"
+                        + "!source: The source code for this bot");
+                });
+
             comm.CreateCommand("deathknight")
                 .Do(async (e) =>
                 {

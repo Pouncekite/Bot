@@ -1,7 +1,4 @@
 ﻿using Discord;
-using Discord.Commands;
-
-using System;
 using System.Linq;
 
 namespace NSNBot
@@ -9,12 +6,11 @@ namespace NSNBot
     class Bot
     {
         DiscordClient discord;
-
         public Bot()
         {
             discord = new DiscordClient();
             discord.MessageReceived += Discord_MessageReceived;
-
+            
             discord.LoadCommands();
 
             //Connection event needs to be last
