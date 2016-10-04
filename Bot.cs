@@ -22,7 +22,7 @@ namespace NSNBot
 
         private void Discord_MessageReceived(object sender, MessageEventArgs e)
         {
-            if (e.Message.Channel.ToString().Contains("@"))
+            if (e.Message.Channel.IsPrivate)
             {
                 Server NSNServer = discord.GetServer(Config.GetServerID());
                 Channel responseChannel = NSNServer.FindChannels("feedback").FirstOrDefault();
