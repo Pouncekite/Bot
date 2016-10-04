@@ -29,6 +29,18 @@ namespace NSNBot
                         + "**!source**: The source code for this bot");
                 });
 
+            comm.CreateCommand("jake")
+                .Do(async (e) =>
+                {
+                   await e.Channel.SendFile(Config.GetServer() + "jake.png");
+                });
+
+            comm.CreateCommand("pedantry")
+               .Do(async (e) =>
+               {
+                   await e.Channel.SendFile(Config.GetServer() + "pedantry.png");
+               });
+
             comm.CreateCommand("armory")
                 .Parameter("charName", ParameterType.Required)
                 .Parameter("charServer", ParameterType.Optional)
