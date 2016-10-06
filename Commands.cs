@@ -41,6 +41,12 @@ namespace NSNBot
                    await e.Channel.SendFile(Config.GetServer() + "pedantry.png");
                });
 
+            comm.CreateCommand("stoley")
+               .Do(async (e) =>
+               {
+                   await e.Channel.SendFile(Config.GetServer() + "stoley.png");
+               });
+
             comm.CreateCommand("armory")
                 .Parameter("charName", ParameterType.Required)
                 .Parameter("charServer", ParameterType.Optional)
